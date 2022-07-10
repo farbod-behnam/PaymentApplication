@@ -139,6 +139,12 @@ class UserServiceTest
                 userRequest.getUpdatedAt()
         );
 
+        Wallet wallet = new Wallet(
+                null,
+                new BigDecimal("0.0")
+        );
+
+        given(walletService.createWallet()).willReturn(wallet);
 
         // when
         underTestUserService.updateUser(userRequest, userId);
