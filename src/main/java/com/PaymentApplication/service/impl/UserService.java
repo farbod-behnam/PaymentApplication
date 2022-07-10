@@ -70,6 +70,12 @@ public class UserService implements IUserService
                 userRequest.getUpdatedAt()
         );
 
+        if (user.getWallet() == null)
+        {
+            Wallet wallet = walletService.createWallet();
+            user.setWallet(wallet);
+        }
+
         return userRepository.save(user);
     }
 
