@@ -61,6 +61,14 @@ public class Wallet
         this.user = user;
     }
 
+    public void subtractFee(BigDecimal subtractedFee)
+    {
+        if (this.credit.compareTo(subtractedFee) < 0)
+            return;
+
+        this.credit = this.credit.subtract(subtractedFee);
+    }
+
     @Override
     public String toString()
     {
