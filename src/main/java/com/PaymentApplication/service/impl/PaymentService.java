@@ -12,8 +12,10 @@ import com.PaymentApplication.service.ITransactionService;
 import com.PaymentApplication.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class PaymentService implements IPaymentService
 {
     private final IUserService userService;
