@@ -6,6 +6,7 @@ import com.PaymentApplication.entity.Transaction;
 import com.PaymentApplication.entity.Wallet;
 import com.PaymentApplication.enums.TransactionStatusEnum;
 import com.PaymentApplication.exception.NotFoundException;
+import com.PaymentApplication.rabbitmq.service.IOnlineShopService;
 import com.PaymentApplication.service.IPaymentService;
 import com.PaymentApplication.service.ITransactionService;
 import com.PaymentApplication.service.IUserService;
@@ -17,12 +18,14 @@ public class PaymentService implements IPaymentService
 {
     private final IUserService userService;
     private final ITransactionService transactionService;
+    private final IOnlineShopService onlineShopService;
 
     @Autowired
-    public PaymentService(IUserService userService, ITransactionService transactionService)
+    public PaymentService(IUserService userService, ITransactionService transactionService, IOnlineShopService onlineShopService)
     {
         this.userService = userService;
         this.transactionService = transactionService;
+        this.onlineShopService = onlineShopService;
     }
 
 
@@ -42,7 +45,7 @@ public class PaymentService implements IPaymentService
             Transaction transaction = transactionService.createTransaction(paymentOrderRequest);
             foundUser.addTransaction(transaction);
 
-            // TODO send paymentOrderRequest back to online shop application
+
         }
         else
         {
@@ -52,8 +55,9 @@ public class PaymentService implements IPaymentService
             foundUser.addTransaction(transaction);
 
 
-            // TODO send paymentOrderRequest back to online shop application
         }
+
+        onlineShopService.sendBackOrder(paymentOrderRequest);
 
     }
 }

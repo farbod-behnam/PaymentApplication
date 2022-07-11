@@ -6,6 +6,7 @@ import com.PaymentApplication.entity.Transaction;
 import com.PaymentApplication.entity.Wallet;
 import com.PaymentApplication.enums.TransactionStatusEnum;
 import com.PaymentApplication.exception.NotFoundException;
+import com.PaymentApplication.rabbitmq.service.IOnlineShopService;
 import com.PaymentApplication.service.IPaymentService;
 import com.PaymentApplication.service.ITransactionService;
 import com.PaymentApplication.service.IUserService;
@@ -34,6 +35,9 @@ class PaymentServiceTest
 
     @Mock
     private ITransactionService transactionService;
+
+    @Mock
+    private IOnlineShopService onlineShopService;
 
     @BeforeEach
     void setUp()
