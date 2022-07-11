@@ -1,5 +1,7 @@
 package com.PaymentApplication.rabbitmq;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -46,7 +48,7 @@ public class RabbitMQConfig
     private String PAYMENT_APP_ORDER_ROUTING_KEY;
 
     // #############################
-    // ONLINE SHOP
+    // ONLINE SHOP CONFIG
     // #############################
 
     @Bean
@@ -80,7 +82,7 @@ public class RabbitMQConfig
     }
 
     // #############################
-    // PAYMENT APPLICATION
+    // PAYMENT APPLICATION CONFIG
     // #############################
 
     @Bean
@@ -109,7 +111,10 @@ public class RabbitMQConfig
     @Bean
     public MessageConverter converter()
     {
-        return new Jackson2JsonMessageConverter();
+        ObjectMapper objectMapper = new ObjectMapper()
+                .registerModule(new JavaTimeModule()); // add jackson support for conversion of Date Time
+
+        return new Jackson2JsonMessageConverter(objectMapper);
     }
 
     /**
