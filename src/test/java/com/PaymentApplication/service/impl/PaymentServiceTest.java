@@ -1,7 +1,6 @@
 package com.PaymentApplication.service.impl;
 
 import com.PaymentApplication.dto.request.payment.PaymentOrderRequest;
-import com.PaymentApplication.dto.request.payment.PaymentUserRequest;
 import com.PaymentApplication.entity.AppUser;
 import com.PaymentApplication.entity.Transaction;
 import com.PaymentApplication.entity.Wallet;
@@ -21,7 +20,6 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 
@@ -40,7 +38,7 @@ class PaymentServiceTest
     @BeforeEach
     void setUp()
     {
-        underTestPaymentService = new PaymentService(userService, transactionService);
+        underTestPaymentService = new PaymentService(userService, transactionService, onlineShopService);
     }
 
     @Test

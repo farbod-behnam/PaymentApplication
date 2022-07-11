@@ -1,4 +1,4 @@
-package com.PaymentApplication.rabbitmq.listener;
+package com.PaymentApplication.rabbitmq.listener.component;
 
 import com.PaymentApplication.dto.request.payment.PaymentOrderRequest;
 import com.PaymentApplication.dto.request.payment.PaymentUserRequest;

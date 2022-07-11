@@ -1,8 +1,9 @@
-package com.PaymentApplication.rabbitmq.listener;
+package com.PaymentApplication.rabbitmq.listener.component;
 
 import com.PaymentApplication.dto.request.payment.PaymentOrderRequest;
 import com.PaymentApplication.dto.request.payment.PaymentUserRequest;
 import com.PaymentApplication.enums.TransactionStatusEnum;
+import com.PaymentApplication.rabbitmq.listener.component.OnlineShopListenerComponent;
 import com.PaymentApplication.service.IPaymentService;
 import com.PaymentApplication.service.IUserService;
 import org.junit.jupiter.api.BeforeEach;
